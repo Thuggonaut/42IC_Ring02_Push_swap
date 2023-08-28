@@ -1,0 +1,54 @@
+THE CONCEPT OF COMPLEXITY:
+
+Algorithm Analysis: 
+The concept of algorithm analysis are step-by-step instructions for solving problems, and analyzing them helps us understand their performance.
+
+Algorithm Efficiency: 
+Efficiency is a crucial factor in algorithm analysis. It refers to how quickly an algorithm can solve a problem and how much computational resources it uses, such as time and memory.
+
+Asymptotic Notation: 
+This is a mathematical way to describe the behavior of algorithms as their input size becomes very large. Notations like Big O, Omega, and Theta are used to classify the upper and lower bounds of an algorithm's running time.
+
+Time Complexity: 
+This refers to the amount of time an algorithm takes to complete as a function of its input size. It's often expressed using Big O notation. Different cases like best-case, worst-case, and average-case time complexities are discussed.
+
+Space Complexity: 
+This is the amount of memory space an algorithm uses as a function of its input size. Like time complexity, it's also analyzed using Big O notation.
+
+Types of Analysis: 
+There are different ways to analyze algorithms, including worst-case analysis, average-case analysis, amortized analysis, and probabilistic analysis.
+
+Sorting Algorithms: 
+Sorting algorithms are used to arrange elements in a specific order. Sorting algorithms include Bubble Sort, Merge Sort, and Quick Sort, and analyzes their time complexities.
+
+Searching Algorithms: 
+Searching algorithms such as linear search and binary search are used to find a particular element in a collection of data. 
+
+Dynamic Programming: 
+This is a technique used to solve problems by breaking them down into smaller subproblems and reusing solutions to those subproblems.
+
+Graph Algorithms: 
+Algorithms for working with graphs include depth-first search (DFS) and breadth-first search (BFS).
+
+Amortized Analysis: 
+This technique deals with the average cost per operation in a sequence of operations. It helps understand the overall performance of algorithms over time.
+
+Randomized Algorithms: 
+Algorithms that use randomness to improve efficiency are discussed. These algorithms often have probabilistic analysis due to their non-deterministic nature.
+
+
+MANDATORY PART:
+
+
+
+WHAT ARE THE BIG 0, OMEGA AND THETA NOTATIONS?
+
+WHAT ARE THE WORST CASE, AVERAGE CASE, AMORTIZED AND PROBABILISTIC ANALYSIS?
+
+WHAT ARE BUBBLE, MERGE AND QUICK SORTS?
+
+WHAT ARE LINEAR AND BINARY SEARC ALGORITHMS?
+
+WHAT ARE DFS AND BFS?
+
+
