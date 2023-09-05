@@ -108,3 +108,23 @@ In summary, these notations help computer scientists analyze and compare the eff
 
 Oceano: https://www.youtube.com/watch?v=OaG81sDEpVk
 
+Task:
+```
+Input:					->			Program:		->			Output:
+integer arguments					push_swap					list of instructions
+```
+
+Key: Data structures; Algorithms
+
+Header file contains:
+- include headers
+- data structure for the stack node
+- protoypes to create the stack;
+- prototypes to handle errors
+- prototypes for linked list utils (?)
+- prototypes for sorting algorithms
+- push swap commands
+
+
+
+
