@@ -54,9 +54,9 @@ WHAT ARE DFS AND BFS?
 
 
 //////////////
-	•	We might have an application on our phones that store our contacts, with their names and phone numbers sorted alphabetically. The old-school equivalent might be a phone book, a printed copy of names and phone numbers.  
-	•	We might open the book and start from the first page, looking for a name one page at a time. This algorithm would be correct, since we will eventually find the name if it’s in the book.  
-	•	We might flip through the book two pages at a time, but this algorithm will not be correct since we might skip the page with our name on it.  
+	•	We might have an application on our phones that store our contacts, with their names and phone numbers sorted alphabetically. The old-school equivalent might be a phone book, a printed copy of names and phone numbers. 
+	•	We might open the book and start from the first page, looking for a name one page at a time. This algorithm would be correct, since we will eventually find the name if it’s in the book. 
+	•	We might flip through the book two pages at a time, but this algorithm will not be correct since we might skip the page with our name on it. 
 	•	Another algorithm would be opening the phone book to the middle, decide whether our name will be in the left half or right half of the book (because the book is alphabetized), and reduce the size of our problem by half. We can repeat this until we find our name, dividing the problem in half each time. 
  
 	•	We can visualize the efficiency of each of those algorithms with a chart: 
@@ -65,13 +65,13 @@ WHAT ARE DFS AND BFS?
 
 	•	Our first algorithm, searching one page at a time, can be represented by the red line: our time to solve increases linearly as the size of the problem increases. 
 	•	n is a number representing the size of the problem, so with n pages in our phone books, we have to take up to n steps to find a name. 
-	•	There's a 1 to 1 relationship between pages and tears.  
+	•	There's a 1 to 1 relationship between pages and tears. 
 	•	The second algorithm, searching two pages at a time, can be represented by the yellow line: our slope is less steep, but still linear. Now, we only need (roughly) n / 2 steps, since we flip two pages at a time. 
 	•	Twice as fast, but still the same shape.  
-	•	Indicating n/2 maybe + 1 if we have to double back, but fundamentally, still the same algorithm, 1 - 2 pages at a time.   
+	•	Indicating n/2 maybe + 1 if we have to double back, but fundamentally, still the same algorithm, 1 - 2 pages at a time.  
 	•	Our final algorithm, dividing the phone book in half each time, can be represented by the green line, with a fundamentally different relationship between the size of the problem and the time to solve it. If the phone book doubled in size from 1000 to 2000 pages, we would only need one more step to find our name. 
 	•	Log arithmetic, in terms of how slow or fast.  
-	•	The implication of this algorithm is we could even double the size of the phone book, and no big deal, one additional page tear, and we take yet another 1000 page bite out of the phone book.   
+	•	The implication of this algorithm is we could even double the size of the phone book, and no big deal, one additional page tear, and we take yet another 1000 page bite out of the phone book.  
 
 
 Big O Notation (O):
