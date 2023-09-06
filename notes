@@ -111,7 +111,26 @@ Oceano: https://www.youtube.com/watch?v=OaG81sDEpVk
 Task:
 ```
 Input:					->			Program:		->			Output:
-integer arguments					push_swap					list of instructions
+integer arguments					push_swap					list of instructions (seperated by a `\n`)
+```
+
+For example:
+Input:
+ `./push_swap 2 1 34 21 90 -42`
+Output:
+```
+pb
+pb
+pb
+rra
+rra
+pa
+rra
+pa
+ra
+pa
+rra
+rra
 ```
 
 Key: Data structures; Algorithms
@@ -125,6 +144,117 @@ Header file contains:
 - prototypes for sorting algorithms
 - push swap commands
 
+What is a stack?
+- A series of elements stacked on top of each other. 
+- Pushing an element on top of a stack, makes that element the "top".
+- Removing the top element is "Popping"
 
+We need to implement in our algorithm, a stack:
+- An option is to use the "linked list" data structure which consists of nodes.
+- Flexible, easy to manipulate, though, complicated to build and easier to seg fault.
+- We take every string input argument (the integers) and put each inside a node.
+- For example:
 
+`./push_swap "1337 42 -16"`
+
+```
+
+---------
+| 1337	|		<- Stack Top node
+---------
+	|| 
+---------
+|  42	|		
+---------
+	||
+---------
+|  -16	|		<- Stack bottom node
+---------
+	||
+   NULL
+```
+
+What is a node?
+- A struct.
+- Like a "container" that contains some data.
+- Like an array, however the difference is, you cannot put different element types inside an array. For instance, inside an array, it has to be all integers, or, all chars, not mixed. 
+- A struct on the contrary, can contain different element types, for example, a "struct person" can contain a name, a phone number, etc. 
+- In our case, a struct/node contains a value, the top node is `1337`
+	- And contains its current `position` which is `0`
+		- This is a "meta-data" and every node has it, in order to "make movements"
+- Every node has a pointer to its previous node, and a pointer to its' next node.
+	- This allows the creation of a "linked list" - a series of nodes, chained to each other inside the heap. 
+
+A node in practice:
+- Refer to `push_swap.h` for the blueprint of the struct.
+- Refer to the `main.c` where the pointers to the `t_stack_node` structs are declared.
+- We use the nodes to implement our stack. 
+
+Command implementations to move our nodes around:
+- swap
+- rotate
+- reverse rotate
+- push
+
+swap:
+- swaps the top 2 nodes in the stack
+
+```
+a			->			a
+|						|
+1337					42
+|						|
+42						1337
+|						|
+-16						-16
+|						|
+NULL					NULL
+```
+
+rotate:
+- rotates the top node to the bottom of the stack
+- shifting the remaining nodes towards the top of the stack
+
+```
+a			->			a
+|						|
+42						1337
+|						|
+1337					-16
+|						|
+-16						42
+|						|
+NULL					NULL
+```
+
+reverse rotate:
+- rotates the bottom node to the top of the stack
+- shifting the remaing nodes towards the bottom of the stack
+
+```
+a			->			a
+|						|
+1337					42
+|						|
+-16						1337
+|						|
+42						-16
+|						|
+NULL					NULL
+```
+
+push:
+- "pops" off the top node of one stack
+- places it on top of another stack - another linked list
+
+a			&			b			->				a			&			b
+|						|							|						|
+42						21							1337					42	
+|						|							|						|
+1337					NULL						-16						21
+|													|						|
+-16													NULL					NULL
+|						
+NULL				
+```
 
