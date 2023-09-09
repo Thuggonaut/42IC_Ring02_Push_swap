@@ -245,8 +245,9 @@ NULL					NULL
 
 push:
 - "pops" off the top node of one stack
-- places it on top of another stack - another linked list
+- places it on top of another stack - another linked list, an auxiliary stack
 
+```
 a			&			b			->				a			&			b
 |						|							|						|
 42						21							1337					42	
@@ -258,3 +259,77 @@ a			&			b			->				a			&			b
 NULL				
 ```
 
+
+Now that we have our commands implemented, we need to implement the algorithms:
+
+tiny_sort:
+- The base case. Whenever we have 3 nodes in a stack, we use tiny_sort.
+- The idea that, if there are 3 nodes, it'll be very easy to sort:
+	- We ensure the biggest is at the bottom.
+	- Then swap the first two nodes if needed.
+
+The complications come when we have more than 3 nodes to sort in the least amount of moves.
+
+Consider the following example. We push all the stack `a` nodes onto stack `b` until only 3 nodes remain in `a`
+
+```
+a			&			b			->				a			&			b
+|						|							|						|
+1337					NULL						-21						42
+|													|						|
+42													96						1337
+|													|						|
+-21													-16						NULL
+|													NULL
+96
+|
+-16
+|
+NULL
+```
+
+We've now reached our base case, and we perfom tiny_sort on stack `a`:
+
+```
+a			->			a
+|						|
+-21						-21
+|						|
+96						-16
+|						|
+-16						96
+|						|
+NULL					NULL
+```
+
+```
+a			&			b
+|						|
+-21						42
+|						|
+-16						1337
+|						|
+96						NULL
+|						
+NULL					
+```
+
+Now we need to perfom a precise insertion of the node from `b` to `a`: 
+- Every node in `b` gets a `target_node` in `a`, that is bigger, but also the best fit. 
+	- In other words, each node in `b` has to match with a node in `a`.
+	- The `a` `target_node` has to be the best bigger node (the smallest - bigger node).
+		- For example, above, `the target_node` of `42` would be `96`, because it is bigger than `42`, but it is the "smallest bigger".
+	- If there are none, then the target is the smallest node.
+		- For example, above, there is no number bigger than `1337` in stack `a`, so, we search for the smallest number, and the `target_node` then, becomes `-21`.
+	- The `target_node` in stack `a` is what we want to push the current node from stack `b`, on top of.
+	- We can imagine the stacks as a circular linked list.
+		- Which is why, if a node from stack `b` has no bigger number in stack `a`, the target is the smallest from stack `a`. 
+
+Now that we have all the target_nodes, we ask, which `b` node is the `cheapest` to move?
+- Recall, every node has its `current_position` occupied in the stack, which needs to be refreshed after each move.
+- So, we need to assign all the nodes from both stacks, their `current_position` after each move.
+- How do we find which `b` node is the `cheapest` to move?
+	- To get a `push_price` value, we sum the positions of:
+		- `b->current_position` `+`
+		- `target_node->current_position`
+	- How much does it cost to bring the 

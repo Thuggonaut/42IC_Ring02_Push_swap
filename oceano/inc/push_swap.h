@@ -10,7 +10,7 @@ typedef struct s_stack_node //A container of data enclosed in {} braces. `s_` fo
 {
 	int					value; //The number to sort
 	int					current_position; //The number's position in the stack
-	int					final_index;
+	int					final_index; //Is this being used?
 	int					push_price;
 	bool				above_median;
 	bool				cheapest;
