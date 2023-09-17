@@ -15,7 +15,7 @@ static void	rotate_both(t_stack_node **a,
 	while (*a != cheapest_node->target_node
 		&& *b != cheapest_node)
 		rr(a, b, false);
-	set_current_position(*a);
+	set_current_position(*a); //Refresh positions
 	set_current_position(*b);
 }
 
@@ -26,7 +26,7 @@ static void	reverse_rotate_both(t_stack_node **a,
 	while (*a != cheapest_node->target_node
 		&& *b != cheapest_node)
 		rrr(a, b, false);
-	set_current_position(*a);
+	set_current_position(*a); //Refresh current positions
 	set_current_position(*b);
 }
 
@@ -66,12 +66,12 @@ static void	move_nodes(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*cheapest_node;
 
-	cheapest_node = return_cheapest(*b);
+	cheapest_node = return_cheapest(*b); //After each configuration, return a pointer to the cheapest node
 	if (cheapest_node->above_median
-		&& cheapest_node->target_node->above_median)
+		&& cheapest_node->target_node->above_median) //If both nodes are `above_median`, rotate both, effectively halving the cost of two moves
 		rotate_both(a, b, cheapest_node);
 	else if (!(cheapest_node->above_median)
-		&& !(cheapest_node->target_node->above_median))
+		&& !(cheapest_node->target_node->above_median)) //If both nodes are below median, reverse rotate both, effectively halving the cost of two moves
 		reverse_rotate_both(a, b, cheapest_node);
 	finish_rotation(b, cheapest_node, 'b');
 	finish_rotation(a, cheapest_node->target_node, 'a');
@@ -99,8 +99,8 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 	tiny_sort(a);
 	while (*b)
 	{
-		init_nodes(*a, *b);
-		move_nodes(a, b);
+		init_nodes(*a, *b); //Refresh the current positions of the notes in the current state
+		move_nodes(a, b); 
 	}
 	set_current_position(*a);
 	smallest = find_smallest(*a);

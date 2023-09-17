@@ -332,4 +332,28 @@ Now that we have all the target_nodes, we ask, which `b` node is the `cheapest` 
 	- To get a `push_price` value, we sum the positions of:
 		- `b->current_position` `+`
 		- `target_node->current_position`
-	- How much does it cost to bring the 
+	- How many moves to bring the `b` node to the top, `+` how many moved to bring `a` node to the top?
+		- The cost is the sum of moves for both `b` and `a`.
+
+
+////////////////////
+
+Jamie Dawson https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+
+- actions (commands)
+- handle 3:
+	- smallest on top
+	- biggest on bottom
+- handle 5:
+	- push top two nodes from `a` to `b`
+	- apply handle 3 logic to stack a
+	- ensure the correct order in stack a, before accepting `b` nodes
+- handle 100:
+	- split 100 into 5 chunks of 20
+	- 
+
+
+A. Yigit Ogun https://medium.com/@ayogun/push-swap-c1f5d2d41e97
+
+
+
