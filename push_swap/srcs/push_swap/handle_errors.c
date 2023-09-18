@@ -1,6 +1,6 @@
 #include "../../inc/push_swap.h"
 
-//Free array created from ft_split()
+/*Free array created from ft_split()
 void	free_array(char **argv)
 {
 	int	i;
@@ -12,6 +12,7 @@ void	free_array(char **argv)
 		free(argv[i++]);
 	free(argv - 1);
 }
+*/
 
 //Free stack
 void	free_stack(t_stack_node **stack)
@@ -32,12 +33,10 @@ void	free_stack(t_stack_node **stack)
 }
 
 
-void	free_errors(t_stack_node **a, char **argv, bool flag_argc_2)
+void	free_errors(t_stack_node **a, char **argv)
 {
 	free_stack(a);
-	if (flag_argc_2)
-		free_array(argv);
-	write(2, "Error\n", 6);
+	ft_printf("Error\n");
 	exit(1);
 }
 

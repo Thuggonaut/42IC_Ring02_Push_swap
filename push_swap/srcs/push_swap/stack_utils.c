@@ -69,6 +69,7 @@ t_stack_node	*return_cheapest(t_stack_node *stack)
 	}
 	return (NULL);
 }
+*/
 
 int	stack_len(t_stack_node *stack)
 {
@@ -84,4 +85,3 @@ int	stack_len(t_stack_node *stack)
 	}
 	return (count);
 }
-*/

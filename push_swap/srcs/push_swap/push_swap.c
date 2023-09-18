@@ -13,7 +13,7 @@ int	main(int argc, char **argv)
 		return (1);
 	else if (argc == 2)
 		argv = ft_split(argv[1], ' ');
-	init_stack_a(&a, argv + 1, argc == 2);
+	init_stack_a(&a, argv + 1);
 	if (!stack_sorted(a))
 	{
 

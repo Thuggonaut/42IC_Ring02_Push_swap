@@ -24,7 +24,7 @@ static long	ft_atol(const char *s)
 
 //Create the stack with the command line values
 //Flag means, if true, we can free the argv array in the heap
-void	init_stack_a(t_stack_node **a, char **argv, bool flag_argc_2)
+void	init_stack_a(t_stack_node **a, char **argv)
 {
 	long	n;
 	int		i;
@@ -33,15 +33,13 @@ void	init_stack_a(t_stack_node **a, char **argv, bool flag_argc_2)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			error_free(a, argv, flag_argc_2);
+			error_free(a, argv);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN) //Check for overflow
-			error_free(a, argv, flag_argc_2);
+			error_free(a, argv);
 		if (error_repetition(*a, (int)n))
-			error_free(a, argv, flag_argc_2); 
+			error_free(a, argv); 
 		append_node(a, (int)n); //If no errors, append the node to the linked list by, taking a pointer to stack `a`, create a new node and assign `n` to that new node
 		++i;
 	}
-	if (flag_argc_2)
-		free_array(argv);
 }
