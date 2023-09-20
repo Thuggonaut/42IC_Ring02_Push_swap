@@ -5,7 +5,7 @@ static void	rotate(t_stack_node **stack)
 	t_stack_node	*last_node;
 	int				len;
 
-	len = stack_len(*stack);
+	len = ft_lstsize(*stack);
 	if (stack == NULL || *stack == NULL || len == 1)
 		return ;
 	last_node = find_last_node(*stack);
@@ -16,24 +16,24 @@ static void	rotate(t_stack_node **stack)
 	last_node->next->next = NULL;
 }	
 
-void	ra(t_stack_node **a, bool checker)
+void	ra(t_stack_node **a, bool print)
 {
 	rotate(a);
-	if (!checker)
+	if (!print)
 		ft_printf("ra\n");
 }
 
-void	rb(t_stack_node **b, bool checker)
+void	rb(t_stack_node **b, bool print)
 {
 	rotate(b);
-	if (!checker)
+	if (!print)
 		ft_printf("rb\n");
 }
 
-void	rr(t_stack_node **a, t_stack_node **b, bool checker)
+void	rr(t_stack_node **a, t_stack_node **b, bool print)
 {
 	rotate(a);
 	rotate(b);
-	if (!checker)
+	if (!print)
 		ft_printf("rr\n");
 }

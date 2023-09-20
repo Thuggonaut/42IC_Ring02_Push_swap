@@ -24,16 +24,16 @@ static void	push(t_stack_node **dst, t_stack_node **src) //e.g. `src` will be `a
 	}
 }
 
-void	pa(t_stack_node **a, t_stack_node **b, bool checker)
+void	pa(t_stack_node **a, t_stack_node **b, bool print)
 {
 	push(a, b);
-	if (!checker)
+	if (!print)
 		ft_printf("pa\n");
 }
 
-void	pb(t_stack_node **b, t_stack_node **a, bool checker)
+void	pb(t_stack_node **b, t_stack_node **a, bool print)
 {
 	push(b, a);
-	if (!checker)
+	if (!print)
 		ft_printf("pb\n");
 }

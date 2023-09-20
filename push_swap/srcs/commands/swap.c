@@ -4,7 +4,7 @@ static void	swap(t_stack_node **head)
 {
 	int	len;
 
-	len = stack_len(*head);
+	len = ft_lstsize(*head);
 	if (*head == NULL || head == NULL || len == 1)
 		return ;
 	*head = (*head)->next;
@@ -16,24 +16,24 @@ static void	swap(t_stack_node **head)
 	(*head)->prev = NULL;
 }
 
-void	sa(t_stack_node	**a, bool checker)
+void	sa(t_stack_node	**a, bool print)
 {
 	swap(a);
-	if (!checker)
+	if (!print)
 		ft_printf("sa\n");
 }
 
-void	sb(t_stack_node **b, bool checker)
+void	sb(t_stack_node **b, bool print)
 {
 	swap(b);
-	if (!checker)
+	if (!print)
 		ft_printf("sb\n");
 }
 
-void	ss(t_stack_node **a, t_stack_node **b, bool checker)
+void	ss(t_stack_node **a, t_stack_node **b, bool print)
 {
 	swap(a);
 	swap(b);
-	if (!checker)
+	if (!print)
 		ft_printf("ss\n");
 }
