@@ -63,7 +63,7 @@ void	sort_a(t_stack_node **a, t_stack_node **b)
 			else if (!(*b)->target_node->above_median)
 				rra(a, false);
 		}
-		prep_for_push(a, (*b)->target_node, 'a');
+		prep_for_push(a, (*b)->target_node, 'a'); //Do we need this line ?????????????????
 	}
 	return (a); //Do we need this line?????????
 }
