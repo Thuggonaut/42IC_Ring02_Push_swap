@@ -1,20 +1,5 @@
 #include "../../inc/push_swap.h"
 
-//Check if a stack is already sorted
-bool	stack_sorted(t_stack_node *stack)
-{
-	if (stack == NULL)
-		return (1);
-	while (stack->next)
-	{
-		if (stack->nbr > stack->next->nbr)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
-}
-
-
 static t_stack_node	*find_highest(t_stack_node *stack)
 {
 	int				highest;
@@ -34,17 +19,6 @@ static t_stack_node	*find_highest(t_stack_node *stack)
 	}
 	return (highest_node);
 }
-
-/*Handle input 5
-void	handle_five(t_stack_node **a, t_stack_node **b)
-{
-	while (stack_len(*a) > 3)
-	{
-		init_nodes(*a, *b);
-		finish_rotation(a, find_smallest(*a), 'a');
-		pb(b, a, false);
-	}
-}*/
 
 void	sort_three(t_stack_node **a)
 {

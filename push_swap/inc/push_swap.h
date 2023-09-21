@@ -22,29 +22,29 @@ typedef struct s_stack_node //A container of data enclosed in {} braces. `s_` fo
 	struct s_stack_node	*prev; //A pointer to the previous node
 }	t_stack_node; //Now that we have our struct blueprint, we can use a "shortened name", "t_stack_node". `t_` for type
 
-
 //***Handle errors
-//void			free_array(char **argv); //Previously 'free_matrix'
-void			free_errors(t_stack_node **a, char **argv); //Previously `error_free`
+int				error_syntax(char *str_n);
+int				error_duplicate(t_stack_node *a, int n);
 void			free_stack(t_stack_node **stack);
-int				error_duplicate(t_stack_node *a, int n); //Previously `error_repetition`
-//int		error_syntax(char *str_n);
-
+void			free_errors(t_stack_node **a, char **argv);
 
 //***Stack initiation
 void			init_stack_a(t_stack_node **a, char **argv); //Previously `stack_init`
+void			append_node(t_stack_node **stack, int n);
+
+//***Nodes initiation
 void			init_nodes(t_stack_node *a, t_stack_node *b);
 void			current_index(t_stack_node *stack);
 void			cost_analysis(t_stack_node *a, t_stack_node *b);
 void			set_cheapest(t_stack_node *b);
 
 //***Stack utils
-void			append_node(t_stack_node **stack, int n);
+bool			stack_sorted(t_stack_node *stack);
 t_stack_node	*find_min(t_stack_node *stack);
 t_stack_node	*find_max(t_stack_node *stack);
 t_stack_node	*get_cheapest(t_stack_node *stack);
 void			prep_for_push(t_stack_node **s, t_stack_node *n, char c);
-
+void			move_cheapest(t_stack_node **a, t_stack_node **b);
 
 //***Commands
 void			sa(t_stack_node **a, bool print);
@@ -59,9 +59,7 @@ void			rrr(t_stack_node **a, t_stack_node **b, bool print);
 void			pa(t_stack_node **a, t_stack_node **b, bool print);
 void			pb(t_stack_node **b, t_stack_node **a, bool print);
 
-
 //***Algorithm
-bool			stack_sorted(t_stack_node *stack);
 void			sort_three(t_stack_node **a);
 void			sort_b(t_stack_node **a, t_stack_node **b);
 void			sort_a(t_stack_node **a, t_stack_node **b);

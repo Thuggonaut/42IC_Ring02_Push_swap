@@ -22,6 +22,32 @@ static long	ft_atol(const char *s)
 	return (result * sign);
 }
 
+//Search for the last node to append to the linked list
+void	append_node(t_stack_node **stack, int n)
+{
+	t_stack_node	*node;
+	t_stack_node	*last_node;
+
+	if (stack == NULL)
+		return ;
+	node = malloc(sizeof(t_stack_node));
+	if (node == NULL)
+		return ;
+	node->next = NULL;
+	node->nbr = n;
+	if (*stack == NULL)
+	{
+		*stack = node;
+		node->prev = NULL;
+	}
+	else
+	{
+		last_node = ft_lstlast(*stack);
+		last_node->next = node;
+		node->prev = last_node;
+	}
+}
+
 //Create the stack with the command line values
 //Flag means, if true, we can free the argv array in the heap
 void	init_stack_a(t_stack_node **a, char **argv)

@@ -1,7 +1,5 @@
 #include "../../inc/push_swap.h"
 
-
-
 void	sort_b(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*max;
@@ -63,7 +61,6 @@ void	sort_a(t_stack_node **a, t_stack_node **b)
 			else if (!(*b)->target_node->above_median)
 				rra(a, false);
 		}
-		prep_for_push(a, (*b)->target_node, 'a'); //Do we need this line ?????????????????
 	}
 	return (a); //Do we need this line?????????
 }
@@ -80,31 +77,3 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 			rra(a, false); //Reverse rotate the bottom `a` node
 	}
 }
-
-int	main(int argc, char **argv)
-{
-	t_stack_node	*a;
-	t_stack_node	*b;
-
-	a = NULL;
-	b = NULL;
-
-	//Handle errors
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
-	if (!stack_sorted(a))
-	{
-		if (ft_lstsize(a) == 2) 
-			sa(&a, false);
-		else if (ft_lstsize(a) == 3)
-			sort_three(&a);
-		else
-			sort_stacks(&a, &b);
-	}
-	free_stack(&a); //Clean up the stack
-	return (0);
-}
-
