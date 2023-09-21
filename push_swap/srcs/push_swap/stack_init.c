@@ -42,14 +42,12 @@ void	append_node(t_stack_node **stack, int n)
 	}
 	else
 	{
-		last_node = ft_lstlast(*stack);
+		last_node = find_last(*stack);
 		last_node->next = node;
 		node->prev = last_node;
 	}
 }
 
-//Create the stack with the command line values
-//Flag means, if true, we can free the argv array in the heap
 void	init_stack_a(t_stack_node **a, char **argv)
 {
 	long	n;
@@ -59,13 +57,35 @@ void	init_stack_a(t_stack_node **a, char **argv)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			error_free(a, argv);
+			free_errors(a);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN) //Check for overflow
-			error_free(a, argv);
-		if (error_repetition(*a, (int)n))
-			error_free(a, argv); 
+			free_errors(a);
+		if (error_duplicate(*a, (int)n))
+			free_errors(a); 
 		append_node(a, (int)n); //If no errors, append the node to the linked list by, taking a pointer to stack `a`, create a new node and assign `n` to that new node
 		++i;
 	}
 }
+
+/*
+void	init_stack_a(t_stack_node **a, char **argv)
+{
+	long	n;
+	int		i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (error_syntax(argv[i]))
+			free_errors(a, argv);
+		n = ft_atol(argv[i]);
+		if (n > INT_MAX || n < INT_MIN) //Check for overflow
+			free_errors(a, argv);
+		if (error_duplicate(*a, (int)n))
+			free_errors(a, argv); 
+		append_node(a, (int)n); //If no errors, append the node to the linked list by, taking a pointer to stack `a`, create a new node and assign `n` to that new node
+		++i;
+	}
+}
+*/

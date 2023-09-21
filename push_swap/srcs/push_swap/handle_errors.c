@@ -46,9 +46,18 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
+void	free_errors(t_stack_node **a)
+{
+	free_stack(a);
+	ft_printf("Error\n");
+	exit(1);
+}
+
+/*
 void	free_errors(t_stack_node **a, char **argv)
 {
 	free_stack(a);
 	ft_printf("Error\n");
 	exit(1);
 }
+*/

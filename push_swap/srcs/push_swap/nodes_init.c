@@ -8,7 +8,7 @@ void	current_index(t_stack_node *stack)
 	i = 0; //The first index is `0`
 	if (stack == NULL)
 		return ;
-	median = ft_lstsize(stack) / 2; //Calculate the median by dividing the length of a stack by 2
+	median = stack_len(stack) / 2; //Calculate the median by dividing the length of a stack by 2
 	while (stack) //Loop through all the nodes until the end of the stack is reached
 	{
 		stack->index = i; //Assign the current index value to the current node
@@ -54,8 +54,8 @@ void	cost_analysis(t_stack_node *a, t_stack_node *b)
 	int	len_a;
 	int	len_b;
 
-	len_a = ft_lstsize(a);
-	len_b = ft_lstsize(b);
+	len_a = stack_len(a);
+	len_b = stack_len(b);
 	while (a) //Loop through each node until the end of the stack is reached
 	{
 		a->push_cost = a->index; //Assign the current `a` node's push cost, its' index value

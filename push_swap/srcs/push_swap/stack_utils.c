@@ -1,5 +1,27 @@
 #include "../../inc/push_swap.h"
 
+int	stack_len(t_stack_node *stack)
+{
+	int	count;
+
+	count = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		count++;
+	}
+	return (count);
+}
+
+t_stack_node	*find_last(t_stack_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
+
 bool	stack_sorted(t_stack_node *stack)
 {
 	if (stack == NULL)
@@ -52,5 +74,3 @@ t_stack_node	*find_max(t_stack_node *stack)
 	}
 	return (max_node);
 }
-
-

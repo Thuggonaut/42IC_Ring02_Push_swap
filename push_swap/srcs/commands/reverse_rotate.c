@@ -5,10 +5,10 @@ static void	reverse_rotate(t_stack_node **stack)
 	t_stack_node	*last;
 	int				len;
 
-	len = ft_lstsize(*stack);
+	len = stack_len(*stack);
 	if (*stack == NULL || stack == NULL || len == 1)
 		return ;
-	last = ft_lstlast(*stack);
+	last = find_last(*stack);
 	last->prev->next = NULL;
 	last->next = *stack;
 	last->prev = NULL;

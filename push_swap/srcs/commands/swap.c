@@ -4,7 +4,7 @@ static void	swap(t_stack_node **head)
 {
 	int	len;
 
-	len = ft_lstsize(*head);
+	len = stack_len(*head);
 	if (*head == NULL || head == NULL || len == 1)
 		return ;
 	*head = (*head)->next;

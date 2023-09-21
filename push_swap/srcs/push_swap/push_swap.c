@@ -16,9 +16,9 @@ int	main(int argc, char **argv)
 	init_stack_a(&a, argv + 1);
 	if (!stack_sorted(a))
 	{
-		if (ft_lstsize(a) == 2) 
+		if (stack_len(a) == 2) 
 			sa(&a, false);
-		else if (ft_lstsize(a) == 3)
+		else if (stack_len(a) == 3)
 			sort_three(&a);
 		else
 			sort_stacks(&a, &b);

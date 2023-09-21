@@ -26,10 +26,10 @@ typedef struct s_stack_node //A container of data enclosed in {} braces. `s_` fo
 int				error_syntax(char *str_n);
 int				error_duplicate(t_stack_node *a, int n);
 void			free_stack(t_stack_node **stack);
-void			free_errors(t_stack_node **a, char **argv);
+void			free_errors(t_stack_node **a);
 
 //***Stack initiation
-void			init_stack_a(t_stack_node **a, char **argv); //Previously `stack_init`
+void			init_stack_a(t_stack_node **a, char **argv);
 void			append_node(t_stack_node **stack, int n);
 
 //***Nodes initiation
@@ -39,6 +39,8 @@ void			cost_analysis(t_stack_node *a, t_stack_node *b);
 void			set_cheapest(t_stack_node *b);
 
 //***Stack utils
+int				stack_len(t_stack_node *stack);
+t_stack_node	*find_last(t_stack_node *stack);
 bool			stack_sorted(t_stack_node *stack);
 t_stack_node	*find_min(t_stack_node *stack);
 t_stack_node	*find_max(t_stack_node *stack);
