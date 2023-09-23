@@ -356,4 +356,9 @@ Jamie Dawson https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of
 A. Yigit Ogun https://medium.com/@ayogun/push-swap-c1f5d2d41e97
 
 
-
+https://medium.com/geekculture/a-beginners-guide-to-setup-opengl-in-linux-debian-2bfe02ccd1e
+https://gist.github.com/shamiul94/a632f7ab94cf389e08efd7174335df1c
+install OpenGL
+chat gpt'd all lib errors
+permission denied:
+chmod +x ../../push_swap
