@@ -67,25 +67,3 @@ void	init_stack_a(t_stack_node **a, char **argv)
 		++i;
 	}
 }
-
-/*
-void	init_stack_a(t_stack_node **a, char **argv)
-{
-	long	n;
-	int		i;
-
-	i = 0;
-	while (argv[i])
-	{
-		if (error_syntax(argv[i]))
-			free_errors(a, argv);
-		n = ft_atol(argv[i]);
-		if (n > INT_MAX || n < INT_MIN) //Check for overflow
-			free_errors(a, argv);
-		if (error_duplicate(*a, (int)n))
-			free_errors(a, argv); 
-		append_node(a, (int)n); //If no errors, append the node to the linked list by, taking a pointer to stack `a`, create a new node and assign `n` to that new node
-		++i;
-	}
-}
-*/

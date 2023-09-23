@@ -32,16 +32,18 @@ int	error_duplicate(t_stack_node *a, int n)
 void	free_stack(t_stack_node **stack)
 {
 	t_stack_node	*tmp;
+	t_stack_node	*current;
 
-	if (!stack)
+	if (stack == NULL)
 		return ;
-	while (*stack)
+	current = *stack;
+	while (current)
 	{
-		tmp = (*stack)->next;
-		(*stack)->nbr = 0;
-		free(*stack);
-		*stack = tmp;
+		tmp = current->next;
+		free(current);
+		current = tmp;
 	}
+	*stack = NULL;
 }
 
 void	free_errors(t_stack_node **a)

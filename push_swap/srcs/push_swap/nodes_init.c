@@ -74,9 +74,9 @@ void	set_cheapest(t_stack_node *a)
 	long			best_match_value;
 	t_stack_node	*best_match_node;
 
-	if (a == NULL)
+	if (!a)
 		return ;
-	best_match_value = LONG_MIN;
+	best_match_value = LONG_MAX;
 	while (a)
 	{
 		if (a->push_cost < best_match_value)

@@ -1,21 +1,28 @@
 #include "../../inc/push_swap.h"
 
-void	sort_b(t_stack_node **a, t_stack_node **b)
+void 	sort_b_1st(t_stack_node **a, t_stack_node **b)
 {
-	if (stack_len(*a) > 3 && !stack_sorted(*a))
-			pb(a, b, 0);
-	if (stack_len(*a) > 3 && !stack_sorted(*a))
-			pb(a, b, 0);
-	if (stack_len(*a) > 3 && !stack_sorted(*a))
+	while (stack_len(*a) > 3 && !stack_sorted(*a)) //As long as there are more than 3 nodes in stack `a`
 	{
-		while (stack_len(*a) > 3) //As long as there are more than 3 nodes in stack `a`
-		{
-			init_nodes(*a, *b); //Refresh the current index and data in all the nodes in the current configuration
-			move_cheapest(a, b); //Push the cheapest `a` node to stack `b`
-		}
+		init_nodes(*a, *b); //Refresh the current index and data in all the nodes in the current configuration
+		move_cheapest(a, b); //Push the cheapest `a` node to stack `b`
 	}
+}
+
+t_stack_node	*sort_b_last(t_stack_node **a)
+{
+	t_stack_node	*b;
+
+	b = NULL;
+	if (stack_len(*a) > 3 && !stack_sorted(*a))
+			pb(a, &b, false);
+	if (stack_len(*a) > 3 && !stack_sorted(*a))
+			pb(a, &b, false);
+	if (stack_len(*a) > 3 && !stack_sorted(*a))
+		sort_b_1st(a, &b);
 	if (!stack_sorted(*a))
 		sort_three(a);
+	return (b);
 }
 
 static void	set_target_b(t_stack_node **a, t_stack_node **b)//Find `b` node's target in stack `a`. Does it need to be static????????????? If not, then add prototype in push_swap.h
@@ -46,7 +53,7 @@ static void	set_target_b(t_stack_node **a, t_stack_node **b)//Find `b` node's ta
 	}
 }
 
-void	sort_a(t_stack_node **a, t_stack_node **b)
+t_stack_node	**sort_a(t_stack_node **a, t_stack_node **b)
 {
 	while (*b) //Loop until the end of stack `b` is reached and is empty
 	{
@@ -60,12 +67,17 @@ void	sort_a(t_stack_node **a, t_stack_node **b)
 				rra(a, false);
 		}
 	}
+	pa(a, b, false);
+	return (a);
 }
 
-void	sort_stacks(t_stack_node **a, t_stack_node **b)
+void	sort_stacks(t_stack_node **a)
 {
-	sort_b(a, b); //Push all `a` nodes to stack `b`, and sorted in descending order, until there are 3 nodes left in stack `a`
-	sort_a(a, b); //Push back to stack `a` all `b` nodes
+	t_stack_node	*b;
+	
+	b = NULL;
+	sort_b_last(a); //Push all `a` nodes to stack `b`, and sorted in descending order, until there are 3 nodes left in stack `a`
+	sort_a(a, &b); //Push back to stack `a` all `b` nodes
 	while ((*a)->nbr != find_min(*a)->nbr) //While the top `a` node is not the smallest number
 	{
 		if (find_min(*a)->above_median) //If smallest `a` node is above the median
