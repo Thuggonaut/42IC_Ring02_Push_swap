@@ -365,7 +365,8 @@ chmod +x ../../push_swap
 
 
 Test
-$ ARG='4 0 1 3 2'; ./push_swap $ARG
+$ ARG='4 0 1 3 2'; ./push_swap $ARG | ./checker_linux $ARG 
+(or checker_OS)
 
 pb
 pb
@@ -374,3 +375,6 @@ ra
 pa
 pa
 ra
+
+to see how many instructions
+ARG="1 5 3 4 9 32"; ./push_swap $ARG | wc -l
