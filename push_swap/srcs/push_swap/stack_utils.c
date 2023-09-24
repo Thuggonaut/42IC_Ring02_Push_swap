@@ -4,6 +4,8 @@ int	stack_len(t_stack_node *stack)
 {
 	int	count;
 
+	if (!stack)
+		return (0);
 	count = 0;
 	while (stack)
 	{
@@ -24,7 +26,7 @@ t_stack_node	*find_last(t_stack_node *stack)
 
 bool	stack_sorted(t_stack_node *stack)
 {
-	if (stack == NULL)
+	if (!stack)
 		return (1);
 	while (stack->next)
 	{
@@ -40,12 +42,12 @@ t_stack_node	*find_min(t_stack_node *stack)
 	long			min;
 	t_stack_node	*min_node;
 
-	if (stack == NULL)
+	if (!stack)
 		return (NULL);
 	min = LONG_MAX;
 	while (stack)
 	{
-		if (stack->nbr > min)
+		if (stack->nbr < min)
 		{
 			min = stack->nbr;
 			min_node = stack;
@@ -60,7 +62,7 @@ t_stack_node	*find_max(t_stack_node *stack)
 	long			max;
 	t_stack_node	*max_node;
 
-	if (stack == NULL)
+	if (!stack)
 		return (NULL);
 	max = LONG_MIN;
 	while (stack)

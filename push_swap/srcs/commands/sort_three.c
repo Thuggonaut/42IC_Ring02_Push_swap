@@ -5,7 +5,7 @@ static t_stack_node	*find_highest(t_stack_node *stack)
 	int				highest;
 	t_stack_node	*highest_node;
 
-	if (stack == NULL)
+	if (!stack)
 		return (NULL);
 	highest = INT_MIN;
 	while (stack)

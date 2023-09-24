@@ -1,83 +1,69 @@
 #include "../../inc/push_swap.h"
 
-void 	sort_b_1st(t_stack_node **a, t_stack_node **b)
+static void	rotate_both(t_stack_node **a, t_stack_node **b, t_stack_node *cheapest_node) //Static function to maintain the data in "cheapest_node"?
 {
-	while (stack_len(*a) > 3 && !stack_sorted(*a)) //As long as there are more than 3 nodes in stack `a`
-	{
-		init_nodes(*a, *b); //Refresh the current index and data in all the nodes in the current configuration
-		move_cheapest(a, b); //Push the cheapest `a` node to stack `b`
-	}
+	while (*b != cheapest_node->target_node
+		&& *a != cheapest_node) //As long as the current `b` node is not `a` cheapest node's target node
+		rr(a, b, false); //Rotate both `a` and `b` nodes
+	current_index(*a); //Refresh positions
+	current_index(*b);
 }
 
-t_stack_node	*sort_b_last(t_stack_node **a)
+static void	rev_rotate_both(t_stack_node **a, t_stack_node **b, t_stack_node *cheapest_node)
 {
-	t_stack_node	*b;
-
-	b = NULL;
-	if (stack_len(*a) > 3 && !stack_sorted(*a))
-			pb(a, &b, false);
-	if (stack_len(*a) > 3 && !stack_sorted(*a))
-			pb(a, &b, false);
-	if (stack_len(*a) > 3 && !stack_sorted(*a))
-		sort_b_1st(a, &b);
-	if (!stack_sorted(*a))
-		sort_three(a);
-	return (b);
+	while (*b != cheapest_node->target_node
+		&& *a != cheapest_node) //As long as the current `b` node is not `a` cheapest node's target node
+		rrr(a, b, false);  //Reverse rotate both `a` and `b` nodes
+	current_index(*a); //Refresh current positions
+	current_index(*b);
 }
 
-static void	set_target_b(t_stack_node **a, t_stack_node **b)//Find `b` node's target in stack `a`. Does it need to be static????????????? If not, then add prototype in push_swap.h
+static void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*current_a;
-	t_stack_node	*target_node;
-	long			best_match_index;
+	t_stack_node	*cheapest_node;
 
-	while (b) //As long as we have nodes in stack `a` linked list
+	cheapest_node = get_cheapest(*a);
+	if (cheapest_node->above_median
+		&& cheapest_node->target_node->above_median)
+		rotate_both(a, b, cheapest_node);
+	else if (!(cheapest_node->above_median)
+		&& !(cheapest_node->target_node->above_median))
+		rev_rotate_both(a, b, cheapest_node);
+	else
 	{
-		best_match_index = LONG_MAX; //Placeholder for the closest bigger number so far
-		current_a = *a;
-		while (current_a) //Iteratively search through all the nodes in stack `a`
-		{
-			if (current_a->nbr > (*a)->nbr
-				&& current_a->nbr < best_match_index) //If `a` node is bigger than `b` node && smaller than the closest bigger number so far
-			{
-				best_match_index = current_a->nbr; //Update the value of the closest bigger number so far
-				target_node = current_a; //Assign the current `a` node as the `target_node`
-			}
-			current_a = current_a->next; //Move to the next `a` node
-		}
-		if (best_match_index == LONG_MAX) //If the LONG_MAX hasn't changed, it means we haven't found anything bigger
-			(*b)->target_node = find_min(*a); //Then we need to find the smallest nbr and set this as the target node
-		else
-			(*b)->target_node = target_node;
-		*b = (*b)->next;
+		prep_for_push(a, cheapest_node, 'a');
+		prep_for_push(b, cheapest_node->target_node, 'b');
 	}
+	pb(b, a, false);
 }
 
-t_stack_node	**sort_a(t_stack_node **a, t_stack_node **b)
+static void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 {
-	while (*b) //Loop until the end of stack `b` is reached and is empty
-	{
-		current_index(*a); //Refresh the indices in stack `a`
-		set_target_b(a, b); //Refresh `b` nodes' target `a` nodes
-		while ((*a) != (*b)->target_node)
-		{
-			if ((*b)->target_node->above_median)
-				ra(a, false);
-			else if (!(*b)->target_node->above_median)
-				rra(a, false);
-		}
-	}
+	prep_for_push(a, (*b)->target_node, 'a');
 	pa(a, b, false);
-	return (a);
 }
 
-void	sort_stacks(t_stack_node **a)
+void	sort_stacks(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*b;
-	
-	b = NULL;
-	sort_b_last(a); //Push all `a` nodes to stack `b`, and sorted in descending order, until there are 3 nodes left in stack `a`
-	sort_a(a, &b); //Push back to stack `a` all `b` nodes
+	int	len_a;
+
+	len_a = stack_len(*a);
+	if (len_a-- > 3 && !stack_sorted(*a))
+		pb(b, a, false);
+	if (len_a-- > 3 && !stack_sorted(*a))
+		pb(b, a, false);
+	while (len_a-- > 3 && !stack_sorted(*a))
+	{
+		init_nodes_a(*a, *b);
+		move_a_to_b(a, b);
+	}
+	sort_three(a);
+	while (*b)
+	{
+		init_nodes_b(*a, *b);
+		move_b_to_a(a, b);
+	}
+	current_index(*a);
 	while ((*a)->nbr != find_min(*a)->nbr) //While the top `a` node is not the smallest number
 	{
 		if (find_min(*a)->above_median) //If smallest `a` node is above the median

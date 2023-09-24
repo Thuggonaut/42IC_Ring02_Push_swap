@@ -18,7 +18,7 @@ int	error_syntax(char *str_n)
 
 int	error_duplicate(t_stack_node *a, int n)
 {
-	if (a == NULL)
+	if (!a)
 		return (0);
 	while (a)
 	{
@@ -50,12 +50,3 @@ void	free_errors(t_stack_node **a)
 	ft_printf("Error\n");
 	exit(1);
 }
-
-/*
-void	free_errors(t_stack_node **a, char **argv)
-{
-	free_stack(a);
-	ft_printf("Error\n");
-	exit(1);
-}
-*/

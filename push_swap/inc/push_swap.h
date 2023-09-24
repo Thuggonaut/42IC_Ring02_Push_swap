@@ -30,15 +30,15 @@ void			free_errors(t_stack_node **a);
 
 //***Stack initiation
 void			init_stack_a(t_stack_node **a, char **argv);
-void			append_node(t_stack_node **stack, int n);
+char			**split(char *s, char c);
 
 //***Nodes initiation
 void			init_nodes_a(t_stack_node *a, t_stack_node *b);
 void			init_nodes_b(t_stack_node *a, t_stack_node *b);
 void			current_index(t_stack_node *stack);
-void			cost_analysis_a(t_stack_node *a, t_stack_node *b);
-void			cost_analysis_b(t_stack_node *a, t_stack_node *b);
-void			set_cheapest(t_stack_node *a);
+void			set_cheapest(t_stack_node *stack);
+t_stack_node	*get_cheapest(t_stack_node *stack);
+void			prep_for_push(t_stack_node **s, t_stack_node *n, char c);
 
 //***Stack utils
 int				stack_len(t_stack_node *stack);
@@ -46,9 +46,6 @@ t_stack_node	*find_last(t_stack_node *stack);
 bool			stack_sorted(t_stack_node *stack);
 t_stack_node	*find_min(t_stack_node *stack);
 t_stack_node	*find_max(t_stack_node *stack);
-t_stack_node	*get_cheapest(t_stack_node *stack);
-void			prep_for_push(t_stack_node **s, t_stack_node *n, char c);
-void			move_cheapest(t_stack_node **a, t_stack_node **b);
 
 //***Commands
 void			sa(t_stack_node **a, bool print);

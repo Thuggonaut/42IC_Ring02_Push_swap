@@ -6,7 +6,7 @@ void	current_index(t_stack_node *stack)
 	int	median; //The median of the stack
 
 	i = 0; //The first index is `0`
-	if (stack == NULL)
+	if (!stack)
 		return ;
 	median = stack_len(stack) / 2; //Calculate the median by dividing the length of a stack by 2
 	while (stack) //Loop through all the nodes until the end of the stack is reached
@@ -49,7 +49,7 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b)//Find `a` node's targ
 	}
 }
 
-void	cost_analysis(t_stack_node *a, t_stack_node *b)
+static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
 {
 	int	len_a;
 	int	len_b;
@@ -69,31 +69,31 @@ void	cost_analysis(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	set_cheapest(t_stack_node *a)
+void	set_cheapest(t_stack_node *stack)
 {
 	long			best_match_value;
 	t_stack_node	*best_match_node;
 
-	if (!a)
+	if (!stack)
 		return ;
 	best_match_value = LONG_MAX;
-	while (a)
+	while (stack)
 	{
-		if (a->push_cost < best_match_value)
+		if (stack->push_cost < best_match_value)
 		{
-			best_match_value = a->push_cost;
-			best_match_node = a;
+			best_match_value = stack->push_cost;
+			best_match_node = stack;
 		}
-		a = a->next;
+		stack = stack->next;
 	}
 	best_match_node->cheapest = true;
 }
 
-void	init_nodes(t_stack_node *a, t_stack_node *b)
+void	init_nodes_a(t_stack_node *a, t_stack_node *b)
 {
 	current_index(a);
 	current_index(b);
 	set_target_a(a, b);
-	cost_analysis(a, b);
+	cost_analysis_a(a, b);
 	set_cheapest(a);
 }

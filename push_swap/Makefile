@@ -13,17 +13,18 @@ CFLAGS				= -Wall -Werror -Wextra -I
 RM					= rm -f
 
 # Source Files
-COMMANDS_DIR		=	$(SRC_DIR)commands/move_cheapest.c \
-						$(SRC_DIR)commands/push.c \
-						$(SRC_DIR)commands/reverse_rotate.c \
+COMMANDS_DIR		=	$(SRC_DIR)commands/push.c \
+						$(SRC_DIR)commands/rev_rotate.c \
 						$(SRC_DIR)commands/rotate.c \
 						$(SRC_DIR)commands/sort_stacks.c \
 						$(SRC_DIR)commands/sort_three.c \
 						$(SRC_DIR)commands/swap.c
 
 PUSH_SWAP_DIR		=	$(SRC_DIR)push_swap/handle_errors.c \
-						$(SRC_DIR)push_swap/nodes_init.c \
+						$(SRC_DIR)push_swap/init_a_to_b.c \
+						$(SRC_DIR)push_swap/init_b_to_a.c \
 						$(SRC_DIR)push_swap/push_swap.c \
+						$(SRC_DIR)push_swap/split.c \
 						$(SRC_DIR)push_swap/stack_init.c \
 						$(SRC_DIR)push_swap/stack_utils.c
 

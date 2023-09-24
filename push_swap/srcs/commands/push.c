@@ -4,14 +4,14 @@ static void	push(t_stack_node **dst, t_stack_node **src) //e.g. `src` will be `a
 {
 	t_stack_node	*push_node;
 
-	if (*src == NULL)
+	if (!(*src))
 		return ;
 	push_node = *src; //The top `a` node to push
 	*src = (*src)->next; //Move the pointer to the next `a` node (the node following `push_node`)
 	if (*src) //Check if the current `a` node exists
 		(*src)->prev = NULL; //Set the current `a` node as the head of the stack
 	push_node->prev = NULL; //Detach the node to push from `a`
-	if (*dst == NULL) //Check if `b` is empty
+	if (!(*dst)) //Check if `b` is empty
 	{
 		*dst = push_node; //Assign to `b` node the node to push from `a`
 		push_node->next = NULL; //The pushed node is completely detached from `a` and now in `b` as the "last node"
