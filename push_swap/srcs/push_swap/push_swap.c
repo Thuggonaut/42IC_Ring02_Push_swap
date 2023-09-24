@@ -8,10 +8,7 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
-	{
-		ft_printf("Error: Invalid input\nTry: ./push_swap <random numbers> \n");
 		return (1);
-	}
 	else if (argc == 2)
 		argv = split(argv[1], ' ');
 	init_stack_a(&a, argv + 1);
