@@ -10,7 +10,6 @@ static void	rotate(t_stack_node **stack) //Define a function that rotates the st
 	last_node->next = *stack; //Assign to the last node, its `next` attribute as the top node, effectively setting the current top node as the last node
 	*stack = (*stack)->next; //Assign to the pointer of the top node, the node after it (second from the top)
 	(*stack)->prev = NULL; //Complete setting the current top node by detaching it from its previous top node
-	last_node->next->prev = last_node; //The current last node is assigned, the previous top node. 
 	last_node->next->next = NULL; 
 }	
 
