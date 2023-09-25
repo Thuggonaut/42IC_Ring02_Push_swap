@@ -2,9 +2,6 @@
 
 static void	swap(t_stack_node **head)
 {
-	int	len;
-
-	len = stack_len(*head);
 	if (!*head || !(*head)->next)
 		return ;
 	*head = (*head)->next;
