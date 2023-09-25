@@ -3,10 +3,10 @@
 void	current_index(t_stack_node *stack)
 {
 	int	i; //To store the index of the current node
-	int	median; //The median of the stack
+	int	median; //To store the position of the median of the stack
 
 	i = 0; //The first index is `0`
-	if (!stack)
+	if (!stack) //Check for am empty stack
 		return ;
 	median = stack_len(stack) / 2; //Calculate the median by dividing the length of a stack by 2
 	while (stack) //Loop through all the nodes until the end of the stack is reached
@@ -23,36 +23,35 @@ void	current_index(t_stack_node *stack)
 
 static void	set_target_a(t_stack_node *a, t_stack_node *b)//Find `a` node's target in stack `b`
 {
-	t_stack_node	*current_b;
-	t_stack_node	*target_node;
-	long			best_match_index;
+	t_stack_node	*current_b; //To store the pointer to the current node in stack `b` and iterate through each node following
+	t_stack_node	*target_node; //To store the pointer to the target node in stack `b`
+	long			best_match_index; //In this case, the best match indexe stores the value of the "closest smaller number" so far
 
-	while (a) //As long as we have nodes in stack `a` linked list
+	while (a) //As long as we have nodes in stack `a`
 	{
-		best_match_index = LONG_MIN; //Placeholder for the closest smaller number so far
-		current_b = b;
-		while (current_b) //Iteratively search through all the nodes in stack `b`
+		best_match_index = LONG_MIN; //Assign the smallest `long` as the closest smaller number so far
+		current_b = b; //Assign to `current_b` the current `b` node
+		while (current_b) //Iteratively search through all the nodes in stack `b` until the end of the stack is reached
 		{
-			if (current_b->nbr < a->nbr
-				&& current_b->nbr > best_match_index) //If `b` node is smaller than `a` node && bigger than the closest smaller number so far
+			if (current_b->nbr < a->nbr && current_b->nbr > best_match_index) //Check if `b` node is smaller than `a` node && bigger than the closest smaller number so far
 			{
-				best_match_index = current_b->nbr; //Update the value of the closest smaller number so far
+				best_match_index = current_b->nbr; //If so, update the value of the closest smaller number so far
 				target_node = current_b; //Assign the current `b` node as the `target_node`
 			}
-			current_b = current_b->next; //Move to the next `b` node
+			current_b = current_b->next; //Move to the next `b` node for comparison, until a "closer smaller number" is found
 		}
-		if (best_match_index == LONG_MIN) //If the LONG_MIN hasn't changed, it means we haven't found anything smaller
-			a->target_node = find_max(b); //Then we need to find the biggest nbr and set this as the target node
+		if (best_match_index == LONG_MIN) //Check if the LONG_MIN hasn't changed, it means we haven't found anything smaller
+			a->target_node = find_max(b); //TIf so, find the biggest `nbr` and set this as the target node
 		else
-			a->target_node = target_node;
-		a = a->next;
+			a->target_node = target_node; //If no "closer smaller number" is found, and the best match has changed
+		a = a->next; //Move to the next `a` node to find it's target `b` node
 	}
 }
 
-static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
+static void	cost_analysis_a(t_stack_node *a, t_stack_node *b) //Define a functio that analyses the cost of the `a` node along with it's target `b` node, which is the sum of the number of instructions for both the nodes to rotate to the top of their stacks
 {
-	int	len_a;
-	int	len_b;
+	int	len_a; //To store the length of stack `a`
+	int	len_b; //To store the length of stack `b`
 
 	len_a = stack_len(a);
 	len_b = stack_len(b);
@@ -69,27 +68,27 @@ static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	set_cheapest(t_stack_node *stack)
+void	set_cheapest(t_stack_node *stack) //Define a function that sets a node's `cheapest` attribute as `true` or `false`
 {
-	long			best_match_value;
-	t_stack_node	*best_match_node;
+	long			cheapest_value; //To store the value of the cheapest node so far
+	t_stack_node	*cheapest_node; //To store a pointer to the cheapest node so far
 
-	if (!stack)
+	if (!stack) //Check for an empty stack
 		return ;
-	best_match_value = LONG_MAX;
-	while (stack)
+	cheapest_value = LONG_MAX; //Assign the biggest `long` as the cheapest value so far
+	while (stack) //Loop through every node until the end of the stack is reached, and we find the cheapest node
 	{
-		if (stack->push_cost < best_match_value)
+		if (stack->push_cost < cheapest_value) //Check if the current node's push cost is cheaper than the cheapest value so far
 		{
-			best_match_value = stack->push_cost;
-			best_match_node = stack;
+			cheapest_value = stack->push_cost; //If so, update the cheapest value to the current node's push cost
+			cheapest_node = stack; //Assign the current node as the cheapest node so far
 		}
-		stack = stack->next;
+		stack = stack->next; //Move to the next node for comparison
 	}
-	best_match_node->cheapest = true;
+	cheapest_node->cheapest = true; //After iterating through the stack, if no cheaper node is found than the current, then set the cheapest node's `cheapest` attribut to `true` in the data structure
 }
 
-void	init_nodes_a(t_stack_node *a, t_stack_node *b)
+void	init_nodes_a(t_stack_node *a, t_stack_node *b) //Define a function that combines all the functions needed to prepare stack `a`, ready for our pushing and sorting. These functions set the data inside the node's structure
 {
 	current_index(a);
 	current_index(b);

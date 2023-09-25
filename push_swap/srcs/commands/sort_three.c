@@ -1,34 +1,14 @@
 #include "../../inc/push_swap.h"
 
-static t_stack_node	*find_highest(t_stack_node *stack)
+void	sort_three(t_stack_node **a) //Define a function that handles when stack `a` has three nodes, and sorts it
 {
-	int				highest;
-	t_stack_node	*highest_node;
+	t_stack_node	*biggest_node; //To store a pointer to the biggest node in stack `a`
 
-	if (!stack)
-		return (NULL);
-	highest = INT_MIN;
-	while (stack)
-	{
-		if (stack->nbr > highest)
-		{
-			highest = stack->nbr;
-			highest_node = stack;
-		}
-		stack = stack->next;
-	}
-	return (highest_node);
-}
-
-void	sort_three(t_stack_node **a)
-{
-	t_stack_node	*highest_node;
-
-	highest_node = find_highest(*a);
-	if (*a == highest_node) //Check if the current node is the highest
+	biggest_node = find_max(*a);
+	if (biggest_node == *a) //Check if the current node is the biggest
 		ra(a, false); //If so, rotate the top node to the bottom of the stack
-	else if ((*a)->next == highest_node) //Check if the second node is the highest
+	else if ((*a)->next == biggest_node) //Check if the second node is the biggest
 		rra(a, false); //If so, reverse rotate the bottom node, to the top of the stack
-	if ((*a)->nbr > (*a)->next->nbr) //Check if the bottom node is the highest, but the top node is higher than the second node
-		sa(a, false); //Simply swap the top and second nodes
+	if ((*a)->nbr > (*a)->next->nbr) //Check if the bottom node is the biggest, but the top node is higher than the second node
+		sa(a, false); //If so, simply swap the top and second nodes
 }
