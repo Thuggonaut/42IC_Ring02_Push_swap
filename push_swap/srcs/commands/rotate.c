@@ -1,19 +1,17 @@
 #include "../../inc/push_swap.h"
 
-static void	rotate(t_stack_node **stack)
+static void	rotate(t_stack_node **stack) //Define a function that rotates the stack's top node to the bottom of the stack
 {
-	t_stack_node	*last_node;
-	int				len;
+	t_stack_node	*last_node; //To store a pointer to the last node of a stack
 
-	len = stack_len(*stack);
-	if (!stack || !(*stack) || len == 1)
+	if (!*stack || !(*stack)->next) //Check if the stack is empty, or if there's one node
 		return ;
 	last_node = find_last(*stack);
-	last_node->next = *stack;
-	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
-	last_node->next->prev = last_node;
-	last_node->next->next = NULL;
+	last_node->next = *stack; //Assign to the last node, its `next` attribute as the top node, effectively setting the current top node as the last node
+	*stack = (*stack)->next; //Assign to the pointer of the top node, the node after it (second from the top)
+	(*stack)->prev = NULL; //Complete setting the current top node by detaching it from its previous top node
+	last_node->next->prev = last_node; //The current last node is assigned, the previous top node. 
+	last_node->next->next = NULL; 
 }	
 
 void	ra(t_stack_node **a, bool print)
