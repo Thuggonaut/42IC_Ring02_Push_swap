@@ -1,49 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tquemato <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/26 14:37:59 by tquemato          #+#    #+#             */
+/*   Updated: 2023/09/26 14:41:05 by tquemato         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//# include <unistd.h>
-//# include <stddef.h>
-//# include <stdio.h>
-//# include <stdlib.h>
-# include <stdbool.h> //To use bool flags, e.g, to print or not to print
-# include <limits.h> //To define MIN and MAX macros
+# include <stdbool.h>
+# include <limits.h>
 # include "../libft/inc/libft.h"
 # include "../libft/inc/ft_printf.h"
 
-typedef struct s_stack_node //A container of data enclosed in {} braces. `s_` for struct
+typedef struct s_stack_node
 {
-	int					nbr; //The number to sort
-	int					index; //The number's position in the stack
-	int					push_cost; //How many commands in total
-	bool				above_median; //Used to calculate `push_cost`
-	bool				cheapest; //The node that is the cheapest to do commands
-	struct s_stack_node	*target_node; //The target node of a node in the opposite stack
-	struct s_stack_node	*next; //A pointer to the next node
-	struct s_stack_node	*prev; //A pointer to the previous node
-}	t_stack_node; //The "shortened name", "t_stack_node". `t_` for type
+	int					nbr;
+	int					index;
+	int					push_cost;
+	bool				above_median;
+	bool				cheapest;
+	struct s_stack_node	*target_node;
+	struct s_stack_node	*next;
+	struct s_stack_node	*prev;
+}	t_stack_node;
 
 //***Handle errors
-int				error_syntax(char *str_n); 
+int				error_syntax(char *str_n);
 int				error_duplicate(t_stack_node *a, int n);
 void			free_stack(t_stack_node **stack);
 void			free_errors(t_stack_node **a);
 
 //***Stack initiation
-void			init_stack_a(t_stack_node **a, char **argv); //Initiate stack `a` before processing
-char			**split(char *s, char c); //To handle input of numbers as a string argument, e.g. enclosed in " "
+void			init_stack_a(t_stack_node **a, char **argv);
+char			**split(char *s, char c);
 
 //***Nodes initiation
-void			init_nodes_a(t_stack_node *a, t_stack_node *b); //To prep all nodes for pushing `a` to `b`
-void			init_nodes_b(t_stack_node *a, t_stack_node *b); //Tp prep all nodes for pushing `b` back to `a`
-void			current_index(t_stack_node *stack); 
+void			init_nodes_a(t_stack_node *a, t_stack_node *b);
+void			init_nodes_b(t_stack_node *a, t_stack_node *b);
+void			current_index(t_stack_node *stack);
 void			set_cheapest(t_stack_node *stack);
 t_stack_node	*get_cheapest(t_stack_node *stack);
 void			prep_for_push(t_stack_node **s, t_stack_node *n, char c);
 
 //***Stack utils
-int				stack_len(t_stack_node *stack); 
+int				stack_len(t_stack_node *stack);
 t_stack_node	*find_last(t_stack_node *stack);
-bool			stack_sorted(t_stack_node *stack); //To check whether a stack is sorted
+bool			stack_sorted(t_stack_node *stack);
 t_stack_node	*find_min(t_stack_node *stack);
 t_stack_node	*find_max(t_stack_node *stack);
 
