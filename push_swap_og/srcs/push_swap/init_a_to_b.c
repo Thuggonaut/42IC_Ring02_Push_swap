@@ -33,7 +33,8 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b)//Find `a` node's targ
 		current_b = b; //Assign to `current_b` the current `b` node
 		while (current_b) //Iteratively search through all the nodes in stack `b` until the end of the stack is reached
 		{
-			if (current_b->nbr < a->nbr && current_b->nbr > best_match_index) //Check if `b` node is smaller than `a` node && bigger than the closest smaller number so far
+			if (current_b->nbr < a->nbr 
+				&& current_b->nbr > best_match_index) //Check if `b` node is smaller than `a` node && bigger than the closest smaller number so far
 			{
 				best_match_index = current_b->nbr; //If so, update the value of the closest smaller number so far
 				target_node = current_b; //Assign the current `b` node as the `target_node`

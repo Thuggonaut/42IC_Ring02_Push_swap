@@ -4,7 +4,7 @@ static void	push(t_stack_node **dst, t_stack_node **src) //Define a function tha
 {
 	t_stack_node	*push_node; //Used to store the pointer to the node to be pushed
 
-	if (!(*src)) //The top node of a stack to be pushed
+	if (!*src) //The top node of a stack to be pushed
 		return ;
 	push_node = *src; //The top node to push is assigned to the `t_stack_node` variable
 	*src = (*src)->next; //Move the pointer of the stack to the next node, which will become the next `top node` after the node before is "popped off"

@@ -1,10 +1,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//# include <unistd.h>
-//# include <stddef.h>
-//# include <stdio.h>
-//# include <stdlib.h>
 # include <stdbool.h> //To use bool flags, e.g, to print or not to print
 # include <limits.h> //To define MIN and MAX macros
 # include "../libft/inc/libft.h"

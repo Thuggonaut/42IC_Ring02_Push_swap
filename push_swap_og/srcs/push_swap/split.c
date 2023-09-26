@@ -2,6 +2,83 @@
 
 #include "../../inc/push_swap.h"
 
+/*static int	count_words(char *s, char c)
+{
+	int		count;
+	bool	inside_word;
+
+	count = 0;
+	while (*s)
+	{
+		inside_word = false;
+		while (*s == c)
+			++s;
+		while (*s != c && *s)
+		{
+			if (!inside_word)
+			{
+				++count;
+				inside_word = true;
+			}
+			++s;
+		}
+	}
+	return (count);
+}
+
+static char	*get_next_word(char *str, char c)
+{
+	static int	cursor;
+	char		*next_str;
+	int			len;
+	int			i;
+
+	cursor = 0;
+	len = 0;
+	i = 0;
+	while (str[cursor] == c)
+		++cursor;
+	while ((str[cursor + len] != c) && str[cursor + len])
+		++len;
+	next_str = malloc((size_t)len * sizeof(char) + 1);
+	if (NULL == next_str)
+		return (NULL);
+	while ((str[cursor] != c) && str[cursor])
+		next_str[i++] = str[cursor++];
+	next_str[i] = '\0';
+	return (next_str);
+}
+
+char	**split(char *str, char c)
+{
+	int		words_number;
+	char	**vector_strings;
+	int		i;
+
+	i = 0;
+	words_number = count_words(str, c);
+	if (!words_number)
+		exit(1);
+	vector_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
+	if (NULL == vector_strings)
+		return (NULL);
+	while (words_number-- >= 0)
+	{
+		if (0 == i)
+		{
+			vector_strings[i] = malloc(sizeof(char));
+			if (NULL == vector_strings[i])
+				return (NULL);
+			vector_strings[i++][0] = '\0';
+			continue ;
+		}
+		vector_strings[i++] = get_next_word(str, c);
+	}
+	vector_strings[i] = NULL;
+	return (vector_strings);
+}*/
+
+
 static int	count_words(char *s, char c)
 {
 	int		count;
@@ -28,12 +105,11 @@ static int	count_words(char *s, char c)
 
 static char	*get_next_word(char *s, char c)
 {
-	static int	cursor; //To keep track of the position within the string `s` across multiple function calls, needed to continue processing the string from where we left off in previous calls, essential for tokenizing a string
+	static int	cursor = 0; //To keep track of the position within the string `s` across multiple function calls, needed to continue processing the string from where we left off in previous calls, essential for tokenizing a string
 	char		*next_word;
 	int			len;
 	int			i;
 
-	cursor = 0;
 	len = 0;
 	i = 0;
 	while (s[cursor] == c)
@@ -77,6 +153,7 @@ char **split(char *s, char c)
 	result_array[i] = NULL;
 	return (result_array);
 }
+
 
 /*
  Both functions, `ft_split()` `split()` split a string into an array of substrings using a specified delimiter character. 

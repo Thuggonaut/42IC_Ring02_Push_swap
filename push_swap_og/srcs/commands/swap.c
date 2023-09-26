@@ -1,5 +1,21 @@
 #include "../../inc/push_swap.h"
 
+/*static void	swap(t_stack_node **stack)
+{
+	int	len;
+
+	len = stack_len(*stack);
+	if (NULL == *stack || NULL == stack || 1 == len)
+		return ;
+	*stack = (*stack)->next;
+	(*stack)->prev->prev = *stack;
+	(*stack)->prev->next = (*stack)->next;
+	if ((*stack)->next)
+		(*stack)->next->prev = (*stack)->prev;
+	(*stack)->next = (*stack)->prev;
+	(*stack)->prev = NULL;
+}*/
+
 static void swap(t_stack_node **stack) //Define a function that swaps the positions of the top node and second node of a stack
 {
     t_stack_node *old_top; //To store a pointer to the top node
