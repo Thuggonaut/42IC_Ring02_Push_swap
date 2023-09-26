@@ -1,13 +1,12 @@
 #include "../../inc/push_swap.h"
 
-//Convert every string into a long value
 static long	ft_atol(const char *s)
 {
 	long	result;
 	int		sign;
 
 	result = 0;
-	sign = 1; 
+	sign = 1;
 	while (*s == ' ' || *s == '\t' || *s == '\n' || \
 			*s == '\r' || *s == '\f' || *s == '\v')
 		s++;
@@ -22,7 +21,6 @@ static long	ft_atol(const char *s)
 	return (result * sign);
 }
 
-//Search for the last node to append to the linked list
 static void	append_node(t_stack_node **stack, int n)
 {
 	t_stack_node	*node;
@@ -59,11 +57,11 @@ void	init_stack_a(t_stack_node **a, char **argv)
 		if (error_syntax(argv[i]))
 			free_errors(a);
 		n = ft_atol(argv[i]);
-		if (n > INT_MAX || n < INT_MIN) //Check for overflow
+		if (n > INT_MAX || n < INT_MIN)
 			free_errors(a);
 		if (error_duplicate(*a, (int)n))
-			free_errors(a); 
-		append_node(a, (int)n); //If no errors, append the node to the linked list by, taking a pointer to stack `a`, create a new node and assign `n` to that new node
+			free_errors(a);
+		append_node(a, (int)n);
 		i++;
 	}
 }
@@ -100,6 +98,6 @@ void	prep_for_push(t_stack_node **stack,
 				rb(stack, false);
 			else
 				rrb(stack, false);
-		}	
+		}
 	}
 }

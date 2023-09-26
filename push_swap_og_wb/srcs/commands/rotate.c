@@ -3,10 +3,8 @@
 static void	rotate(t_stack_node **stack)
 {
 	t_stack_node	*last_node;
-	int				len;
 
-	len = stack_len(*stack);
-	if (NULL == stack || NULL == *stack || 1 == len)
+	if (!*stack || !(*stack)->next)
 		return ;
 	last_node = find_last(*stack);
 	last_node->next = *stack;
