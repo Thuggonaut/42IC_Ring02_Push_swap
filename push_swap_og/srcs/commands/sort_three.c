@@ -12,3 +12,16 @@ void	sort_three(t_stack_node **a) //Define a function that handles when stack `a
 	if ((*a)->nbr > (*a)->next->nbr) //Check if the bottom node is the biggest, but the top node is higher than the second node
 		sa(a, false); //If so, simply swap the top and second nodes
 }
+
+/*
+void	min_on_top(t_stack_node **a)
+{
+	while ((*a)->nbr != find_min(*a)->nbr)
+	{
+		if (find_min(*a)->above_median)
+			ra(a, false);
+		else
+			rra(a, false);
+	}
+}
+*/
