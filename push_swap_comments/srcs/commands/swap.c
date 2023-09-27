@@ -2,18 +2,15 @@
 
 static void	swap(t_stack_node **head)
 {
-	int	len;
-
-	len = stack_len(*head);
-	if (NULL == *head || NULL == head || 1 == len)
+	if (!*head || !(*head)->next) //Check if the stack is empty, or if there's one node
 		return ;
-	*head = (*head)->next;
-	(*head)->prev->prev = *head;
-	(*head)->prev->next = (*head)->next;
-	if ((*head)->next)
-		(*head)->next->prev = (*head)->prev;
-	(*head)->next = (*head)->prev;
-	(*head)->prev = NULL;
+	*head = (*head)->next; //Update the head pointer to point to the next node, effectively moving the head to the second node
+	(*head)->prev->prev = *head; //Update the previous node of the old head (now the second node) to point to the new head (the old second node)
+	(*head)->prev->next = (*head)->next; //Update the next node of the old head's previous node to point to the new head's next node
+	if ((*head)->next) //Check if there is a next node after the new head (old second node)
+		(*head)->next->prev = (*head)->prev; //If so, update its previous pointer to point to the new head's previous node
+	(*head)->next = (*head)->prev; //Update the new head's next pointer to point to the old head's previous node, effectively completing the swap operation
+	(*head)->prev = NULL; //Finally, the previous pointer of the new head is set to NULL to reflect that it is now the new head of the stack
 }
 
 /*static void swap(t_stack_node **stack) //Define a function that swaps the positions of the top node and second node of a stack
