@@ -214,8 +214,42 @@ Let's write our codes: [Illustrate] [each writing]
 	- get_cheapest() [show]
 	- rotate_both() [write]
 	- prep_for_push() [show]
-	
+- init_nodes_b() [write]
+	- set_target_b() [show] [explain, the same as set_target_a, but instead of finding the closest smallest, we're finding the closest biggest]
+- move_b_to_a() [show]
+- min_on_top() [write]
 
 
+# Using a push_swap visualizer
+1. I can't recommend this enough. 
+2. It was very useful for me to see what my code was doing during its implementation, and help with a lot of my debugging. 
+3. The one I used can be found here https://github.com/o-reo/push_swap_visualizer
 
-- Recall, each node has a data that retains their position or index in their stacks. [Illustrate]
+Make sure you follow this sequence:
+1. git clone the repository inside your main push_swap directory, where your push_swap executable will be. 
+2. Install the required packages as stated on the README.md (do `sudo apt update` first to make sure you have the latest information about available packages)
+3. Then, to install a package, do e.g. `sudo apt install cmake`
+4. cd inside `/push_swap_visualizer` 
+5. `mkdir build`
+6. cd into `build` then:
+	- `cmake ..`
+	- `make`
+	- Like myself, you might run into some build errors in your terminal. For example, you're missing a OpenGL package. I just chat gpt'd all the error messages and followed the installation commands :smiley
+7. After a sucessfull build of `cmake ..` and `make`:
+	- run `./bin/visualizer` and a window of the program should apear. 
+	- change the "push_swap file path" to ``../../push_swap`
+
+# Using the checker provided by 42
+1. Download the correct file from the subject page, e.g. for Mac, or Linux, inside the same directory as your executable.
+2. Running the checker likely won't work, as it won't have the executable permission. Check by typing in the terminal `ls -l`
+3. To give it permission, do `chmod +x <filename>`
+4. Test your executable against everything we need our push_swap to do:
+	- e.g. the correct outputs for all error types
+	- e.g. run `ARG='4 10 1 3 2'; ./push_swap $ARG | ./checker_Mac $ARG `
+	- To see how many instructions, run `ARG='4 10 1 3 2'; ./push_swap $ARG | wc -l`
+	- Recall, for our program to pass the evaluation, it'll have to return `n` size of instructions for sorting `x` number of values:
+		- If x = 3 then n <= 3
+		- If x = 5 then n <= 12
+		- If x = 100 then n < 1500
+		- If x = 500 then n < 11500
+		- Note: the lesser instructions our algorithm returns, the more evaluation points we will get.
