@@ -1,36 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort_stacks.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tquemato <tquemato@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 15:24:38 by tquemato          #+#    #+#             */
-/*   Updated: 2023/09/26 16:07:52 by tquemato         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../inc/push_swap.h"
-
-static void	rotate_both(t_stack_node **a,
-						t_stack_node **b,
-						t_stack_node *cheapest_node)
-{
-	while (*b != cheapest_node->target_node && *a != cheapest_node)
-		rr(a, b, false);
-	current_index(*a);
-	current_index(*b);
-}
-
-static void	rev_rotate_both(t_stack_node **a,
-							t_stack_node **b,
-							t_stack_node *cheapest_node)
-{
-	while (*b != cheapest_node->target_node && *a != cheapest_node)
-		rrr(a, b, false);
-	current_index(*a);
-	current_index(*b);
-}
 
 static void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 {
@@ -51,6 +19,17 @@ static void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 {
 	prep_for_push(a, (*b)->target_node, 'a');
 	pa(a, b, false);
+}
+
+static void	min_on_top(t_stack_node **a)
+{
+	while ((*a)->nbr != find_min(*a)->nbr)
+	{
+		if (find_min(*a)->above_median)
+			ra(a, false);
+		else
+			rra(a, false);
+	}
 }
 
 void	sort_stacks(t_stack_node **a, t_stack_node **b)
@@ -74,24 +53,5 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 		move_b_to_a(a, b);
 	}
 	current_index(*a);
-	while ((*a)->nbr != find_min(*a)->nbr)
-	{
-		if (find_min(*a)->above_median)
-			ra(a, false);
-		else
-			rra(a, false);
-	}
+	min_on_top(a);
 }
-
-/*
-void	min_on_top(t_stack_node **a)
-{
-	while ((*a)->nbr != find_min(*a)->nbr)
-	{
-		if (find_min(*a)->above_median)
-			ra(a, false);
-		else
-			rra(a, false);
-	}
-}
-*/

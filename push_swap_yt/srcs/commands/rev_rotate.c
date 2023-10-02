@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rev_rotate.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tquemato <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 15:22:41 by tquemato          #+#    #+#             */
-/*   Updated: 2023/09/26 15:22:42 by tquemato         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../inc/push_swap.h"
 
 static void	rev_rotate(t_stack_node **stack)
@@ -46,4 +34,14 @@ void	rrr(t_stack_node **a, t_stack_node **b, bool print)
 	rev_rotate(b);
 	if (!print)
 		ft_printf("rrr\n");
+}
+
+void	rev_rotate_both(t_stack_node **a,
+						t_stack_node **b,
+						t_stack_node *cheapest_node)
+{
+	while (*b != cheapest_node->target_node && *a != cheapest_node)
+		rrr(a, b, false);
+	current_index(*a);
+	current_index(*b);
 }

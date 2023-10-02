@@ -23,10 +23,10 @@ Purpose of this video is to help me practice defend and explain the problem solv
 
 The Mandatory part.
 
-# The project objective:
+# The project objectives:
 1. We have at our disposal, two stacks named `a` and `b` (that we need to code). [Illustrate] [the stacks] 
 2. Create a program that takes as parameters, a random set of numbers (negative or positive), without duplicates. Our program has to handle both types of inputs: as a variable number of command line arguments; a string, i.e. "numbers between quotation marks, seperated by a space". [Illustrate] [the command line]
-3. Implement an algorithm, that sorts in ascending order, the input of random numbers. [Illustrate] [acending order] 
+3. Implement an algorithm, that sorts in ascending order, the input of random numbers. [Illustrate] [ascending order] 
 4. Our algorithm will consist of swap, rotate, reverse rotate and push operations. 
 5. After taking in an input of numbers, and passing them through our sorting algorithms, our program will output the list of operations (instructions). [Illustrate] [the command line]
 6. For our program to pass the evaluation, it'll have to return `n` size of instructions for sorting `x` number of values:
@@ -47,18 +47,19 @@ The Mandatory part.
 
 # What is a stack?
 1. A stack of objects piled on top of each other. [Illustrate] [the stacks]
-2. A stack has a bottom object, and a top object. [Illustrate]
-3. Credit to Oceano https://www.youtube.com/watch?v=OaG81sDEpVk video on push_swap where I learnt more about stacks and linked lists that helped me a great deal on starting this project. You'll find much of my work in this video were made possible from learning from him. 
-4. Back to our stacks. We create our stacks with linked lists. If you completed the libft bonus you'd be familiar with linked lists. 
+2. A stack has a top object, and a bottom object. [Illustrate]
+3. Credit to Oceano https://www.youtube.com/watch?v=OaG81sDEpVk video on push_swap where I learnt more about stacks and linked lists that helped me a great deal on starting this project. You'll find much of my work in this video were made possible from learning from him. [Include link in video description]
+4. Back to our stacks. We will create our stacks with linked lists. If you completed the libft bonus you'd be familiar with linked lists. 
 
 # What is a linked list?
 1. An organised data structure that contains nodes. [Illustrate] [the nodes]
 2. The nodes are data elements. Consider each node like a box, that stores data inside of it, for example, a number. [Illustrate] [the number data]
-3. What makes this data structure a "linked list" is that they are connected in sequence, like a chain. [Illustrate] [chain like lines between the nodes]
+3. What makes this data structure a "linked list" is that each node are connected in sequence, like a chain. [Illustrate] [chain like lines between the nodes]
 4. "In sequence means", the head node, is connected to the next node, which is connected to the next, and the next, and which is connected to the tail node. We will interchangebly use top with head, and bottom with tail. [Illustrate] [head node, and the "next" arrows. The next arrows over the top of the "chain" lines]. 
 5. What we're looking at, is a singly linked lists. The chain from top to bottom, is unidirectional. 
 6. For this project, we will use a doubly linked list, which means the nodes are linked bidirectionally. Each node has a "reference" to a "next" node, as we've seen so far, and a "reference" to a "previous" node. [Illustrate] [the arrows to previous]
-7. A circular linked list can be unidirectional or bidirectional, but that the tail node, is linked to the head node (we will not be using this). [Illustrate] [arrows pointing to head, then remove before next point]
+7. The tail's *next reference always points to NULL to signify the end of a linked list, unless it is a circular linked list.
+8. A circular linked list can be unidirectional or bidirectional, but that the tail node, is linked to the head node (we will not be using this).
 
 # What is a node?
 1. Recall, a node is like a box containing data, and it can contain many different types of data you want. 
@@ -67,7 +68,7 @@ The Mandatory part.
 	- Reference pointers: a pointer to the next node, a pointer to the previous node. There is a third pointer, but we will get back to this, when it will make sense. [Illustrate] [the pointers, relating to the "next" and "previous" references] 
 
 # Now, we have our stack
-[Illustrate] [the complete stack picture]
+- Let's look at what each operation does [Illustrate] [the complete stack picture]
 
 # The swap, rotate, reverse rotate and push operations
 1. sa, sb , ss operations. [Illustrate]
@@ -82,18 +83,21 @@ The Mandatory part.
 # The Turk Algorithm
 1. Push the nodes from stack `a` to stack `b` until there are three left in stack `a`. 
 2. However, each time an `a` node is pushed to stack `b`, it sorts the nodes in stack `b` at the same time, and in descending order. [Illustrate] [the sort, without details]
-3. Let's look at what happened. We have a stack `a` with more than 3 nodes. 
+3. Let's have a closer look. We have a stack `a` with more than 3 nodes. 
 	- We push the first 2 `a` nodes without checking anything. [Illustrate]
-	- We now have in stack `b`, a MAX number so far, and a MIN number so far. This is important to push the rest of our `a` nodes [Illustrate] [which is MAX, which is MIN]
+	- We now have in stack `b`, a biggest number so far, and a smallest number so far. This is important to push the rest of our `a` nodes [Illustrate] [which is MAX, which is MIN]
 	- Note: Say, if we had a stack of 4 nodes, we would only push the first `a` node to stack `b`, because after this, our "3 left in `a`" condition is met. 
 	# Target nodes
-	- Every `a` node, needs a `target node` in stack `b`. A target node has a value smaller than `a`, but the "closest smaller" value to `a`. [explain the concept of target nodes, and the concept of "closest smaller" via example nodes shown] [Illustrate] [arrows pointing to target nodes]
-	- Recall, each time we push `a` nodes to the stack `b`, we are sorting stack `b` at the same time, in descending order. Hence, each time we push `a` node on top of `b` node, we need to make sure that `a` has a larger value than `b`.
+	- After pushing the first two `a` nodes to stack `b`, we now look at target nodes.
+	- From here, every `a` node, needs a `target node` in stack `b`. A target node has a value smaller than `a`, but the "closest smaller" value to `a`. -[explain the concept of target nodes, and the concept of "closest smaller" via example nodes shown] [Illustrate] [arrows pointing to target nodes]
+	- Recall, each time we push `a` nodes to stack `b`, we are sorting stack `b` at the same time, in descending order. That's why, each time we push `a` node on top of `b` node, we need to make sure that `a` has a larger value than `b`.
 	- Note: if `a` node can't find a target node that contains a "closest smaller" value, its target node will then be, the node with the MAX value - the largest number. You will soon see why this logic makes sense, if you haven't pictured it already. 
 	# Cost analysis
-	- Every `a` node is now assigned, its target node. [Illustrate] [ensure all arrows to targets are present]
-	- The next step, and after each push from here on, until we have only 3 nodes left in stack `a`, we need to calculate, which `a` node we should push to stack `b`.
-	- In other words, we need to find which `a` node is the cheapest to push to `b`. 
+	- In this configuration of the program, every `a` node is now assigned, its target node.
+	- The next step, and after each configuration from here on, until we have only 3 nodes left in stack `a`, we need to calculate, which `a` node we should push to stack `b`.
+	- In other words, from here, and after each push, we need to find which `a` node is the cheapest to push to `b`. 
+
+	# The formula
 	- To find the cheapeast `a` node to push, we sum: 
 		the amount of instructions for bringing `a` node to the top
 	+	the amount of instructions for bringing `a`'s target node to the top
@@ -101,7 +105,9 @@ The Mandatory part.
 	=	the `a` node's push cost [Illustrate] [the formula]
 	- We calculate the push cost for every `a` node, do the instructions needed, then finally, push the cheapest node. [Illustrate]
 	- After each push, we calculate again for each `a` node: its target node; then, the cheapest `a` node to push. 
-	- As long as our stack `a` has more than 3 nodes, we push the `a` nodes to stack `b` until there are 3 nodes left in stack `a`. [Illustrate] [the calculations and push until 3 nodes left in `a`]
+	- As long as our stack `a` has more than 3 nodes, we push the `a` nodes to stack `b` until there are 3 nodes left in stack `a`. 
+	- Feel free to pause the video and have a go at calculating the targets and costs [Illustrate] [the calculations and push until 3 nodes left in `a`]
+	- For this current configuration, since the cost of 25 is 0, we won't need to calculate the rest of the nodes' push cost. The way this analysis works, is, once, we have the first node's push cost, which in this case, is 0, we need to find something cheaper. But, since you can't get cheaper than 0, and even if there's another node who's push cost is 0, we will go with the first one by default. 
 	# Sort Three
 	- We now have 3 nodes left in stack `a`
 	- We will implement an algorithm that sorts a stack of 3 nodes, in ascending order. 
@@ -113,7 +119,7 @@ The Mandatory part.
 	- Recall, our push_swap needs to sort stack `a` in ascending order. This means, for every `b` node, this time it needs a target node in stack `a`.
 	- `b`'s target node will be the node that has the "closest bigger" value in stack `a`. 
 	- If a `b` node cannot find its "closest bigger" value, say, because it already holds the largest number, then, you guessed it, its target node will be the smallest number in stack `a`. 
-	- Let's have a look at the first `b` node and set its target nodes. [Illustrate] [with arrow]
+	- Let's have a look at the first `b` node and set its target node. [Illustrate] [with arrow]
 	- Now we either rotate, or reverse rotate `a` node to make sure it's on top, ready for `b`. 
 	- Imagine, a median line in stack `a`. Whether we rotate, or reverse rotate `a` node, it depends whether `a` node is above, or below the median line. If above, it takes less instructions if we do rotate, and if below, it takes less instructions to do reverse rotate, to bring our target node to the top. [Illustrate] [median line]
 	- [Complete the moves for `a` node to be on top, then push] [Illustrate]
@@ -128,7 +134,12 @@ The Mandatory part.
 	- Until 3 left in stack `a`, push the rest of `a` nodes to `b`, stimultaenously sorting stack `b` in descending order
 	- Sort three in stack `a`
 	- Push all `b` nodes back into stack `a` and ensure `a` is in the right position before each push. 
-	- Finally, move the smallest node on top. [Illustrate] [the who sort again from beginning]
+	- Finally, move the smallest node on top.
+
+# Next:
+- We will write pseudo code to help us plan and structure our code
+- Then, code our algorithm
+- Test our algorithm
 
 # Write pseudo code
 
