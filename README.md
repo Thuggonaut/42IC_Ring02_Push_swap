@@ -1,9 +1,9 @@
-# Push_swap
+# 🛗 Push_swap
 
 Check out my [tutorial here](https://youtu.be/wRvipSG4Mmk)
 
 
-# The Mandatory part:
+## 🔷 The Mandatory part:
 1. We have at our disposal, two stacks named `a` and `b`.
 2. Create a program that takes as parameters, a random set of numbers (negative or positive), without duplicates. Our program has to handle both types of inputs: as a variable number of command line arguments; a string, i.e. "numbers between quotation marks, seperated by a space".
 3. Implement an algorithm, that sorts in ascending order, the input of random numbers.
@@ -11,7 +11,7 @@ Check out my [tutorial here](https://youtu.be/wRvipSG4Mmk)
 5. After taking in an input of numbers, and passing them through our sorting algorithms, our program will output the list of operations (instructions). 
 
 
-## Write pseudo code
+## 🔷 Write pseudo code
 ```
 //Declare pointers to two data structures/linked lists, one for stack `a` and another for `b`
 	//Set both pointers to NULL to avoid undefined behaviour and indicate we're starting with empty stacks
@@ -41,7 +41,7 @@ Check out my [tutorial here](https://youtu.be/wRvipSG4Mmk)
 //Clean up the stack
 ```
 
-## Using a push_swap visualizer
+## 🔷 Using a push_swap visualizer
 1. I can't recommend this enough. 
 2. It was very useful for me to see what my code was doing during its implementation, and help with a lot of my debugging. 
 3. The one I used can be found here https://github.com/o-reo/push_swap_visualizer
@@ -61,7 +61,7 @@ Make sure you follow this sequence:
 	- change the "push_swap file path" to ``../../push_swap`
 
 
-## Using the checker provided by 42
+## 🔷 Using the checker provided by 42
 1. Download the correct file from the subject page, e.g. for Mac, or Linux, inside the same directory as your executable.
 2. Running the checker likely won't work, as it won't have the executable permission. Check by typing in the terminal `ls -l`
 3. To give it permission, do `chmod +x <filename>`
