@@ -42,7 +42,7 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b)//Find `a` node's targ
 			current_b = current_b->next; //Move to the next `b` node for comparison, until a "closer smaller number" is found
 		}
 		if (best_match_index == LONG_MIN) //Check if the LONG_MIN hasn't changed, it means we haven't found anything smaller
-			a->target_node = find_max(b); //TIf so, find the biggest `nbr` and set this as the target node
+			a->target_node = find_max(b); //If so, find the biggest `nbr` and set this as the target node
 		else
 			a->target_node = target_node; //If no "closer smaller number" is found, and the best match has changed
 		a = a->next; //Move to the next `a` node to find it's target `b` node
