@@ -55,7 +55,7 @@ Make sure you follow this sequence:
 6. cd into `build` then:
 	- `cmake ..`
 	- `make`
-	- Like myself, you might run into some build errors in your terminal. For example, you're missing a OpenGL package. I just chat gpt'd all the error messages and followed the installation commands :smiley
+	- Like myself, you might run into some build errors in your terminal. For example, you're missing a OpenGL package. I just chat gpt'd all the error messages and followed the installation commands 😅
 7. After a sucessfull build of `cmake ..` and `make`:
 	- run `./bin/visualizer` and a window of the program should apear. 
 	- change the "push_swap file path" to ``../../push_swap`
