@@ -1,4 +1,4 @@
-# 🔃🔄 Push_swap
+# 🔃↔️ Push_swap
 
 Check out my [tutorial here](https://youtu.be/wRvipSG4Mmk)
 
