@@ -33,6 +33,8 @@ static void	append_node(t_stack_node **stack, int n) //Define a function that se
 		return ;
 	node->next = NULL; //Set the next pointer of the new node to NULL because it will be the last node in the list
 	node->nbr = n; //Set the `next` data of of the new node to `n` value
+	node->cheapest = 0; // Initialise chaepest to 0;
+	// other elements in the struct could be initialised as well but for now, this was the only one causing a valgrind issue
 	if (!(*stack)) //Check if the stack is empty or currently pointing to NULL, indicating a first node needs to be found
 	{
 		*stack = node; //If empty, update the pointer *stack to point to the node, effectively making it the new head of the linked list
