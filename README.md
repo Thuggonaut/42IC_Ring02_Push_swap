@@ -2,7 +2,9 @@
 
 Check out my [tutorial here](https://youtu.be/wRvipSG4Mmk)
 
-
+### Contributors:
+- Leaks fix by [elpah](https://github.com/elpah)
+  
 ## 🔷 The Mandatory part:
 1. We have at our disposal, two stacks named `a` and `b`.
 2. Create a program that takes as parameters, a random set of numbers (negative or positive), without duplicates. Our program has to handle both types of inputs: as a variable number of command line arguments; a string, i.e. "numbers between quotation marks, seperated by a space".
